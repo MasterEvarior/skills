@@ -3,6 +3,10 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.zst";
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -35,5 +39,13 @@
           '';
         };
       }) pkgs;
+
+      formatter = builtins.mapAttrs (
+        system: pkgs:
+        (inputs.treefmt-nix.lib.evalModule pkgs {
+          projectRootFile = "flake.nix";
+          programs.mdformat.enable = true;
+        }).config.build.wrapper
+      ) pkgs;
     };
 }
