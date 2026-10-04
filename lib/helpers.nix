@@ -17,7 +17,7 @@
 
       name = baseNameOf src;
 
-      buildPhase = ''
+      installPhase = ''
         cp -r . $out
       '';
     };
