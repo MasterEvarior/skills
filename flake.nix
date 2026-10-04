@@ -13,7 +13,19 @@
     inputs:
     let
       pkgs = inputs.nixpkgs.legacyPackages;
+      lib = inputs.nixpkgs.lib;
       skills = (import ./skills/skills.nix);
+      mkPkgs =
+        pkgs:
+        let
+          pkgsSet = builtins.listToAttrs (
+            map (skill: lib.attrsets.nameValuePair skill.name (mkPkg pkgs skill.name skill.src)) skills
+          );
+        in
+        pkgsSet
+        // {
+          default = pkgsSet.${(builtins.head skills).name};
+        };
       mkPkg =
         pkgs: name: src:
         pkgs.stdenv.mkDerivation {
@@ -26,11 +38,7 @@
         };
     in
     {
-      packages = builtins.mapAttrs (system: pkgs: {
-        readme = mkPkg pkgs "create-readme" ./skills/create-readme;
-
-        default = inputs.self.packages.${system}.readme;
-      }) pkgs;
+      packages = builtins.mapAttrs (system: pkgs: (mkPkgs pkgs)) pkgs;
 
       devshells = builtins.mapAttrs (system: pkgs: {
         default = pkgs.mkShell {
