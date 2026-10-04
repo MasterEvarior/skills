@@ -37,13 +37,13 @@ You should now see the UI at http://localhost:8080
 
 ### Environment Variables
 
-| Name                  | Description                             | Example                       | Mandatory  |
+| Name | Description | Example | Mandatory |
 |-----------------------|-----------------------------------------|-------------------------------|------------|
-| NDBRE_BASE_URL        | URL to your NocoDB instance             | `https://nocodb.mydomain.com` | ✅         |
-| NDBRE_API_TOKEN       | API token for your NocoDB instance      | `xyz`                         | ✅         |
-| NDBRE_EMAIL_FROM      | Whiche email should send the reminder   | `reminders@mydomain.com`      | ✅         |
-| NDBRE_SMTP_SERVER     | URL of your SMTP server                 | `smtp.mydomain.com:25`        | ✅         |
-| NDBRE_EMAIL_TO        | Which email should receive the reminder | `reminders@mydomain.com`      | ✅         |
+| NDBRE_BASE_URL | URL to your NocoDB instance | `https://nocodb.mydomain.com` | ✅ |
+| NDBRE_API_TOKEN | API token for your NocoDB instance | `xyz` | ✅ |
+| NDBRE_EMAIL_FROM | Whiche email should send the reminder | `reminders@mydomain.com` | ✅ |
+| NDBRE_SMTP_SERVER | URL of your SMTP server | `smtp.mydomain.com:25` | ✅ |
+| NDBRE_EMAIL_TO | Which email should receive the reminder | `reminders@mydomain.com` | ✅ |
 
 ## Development
 
