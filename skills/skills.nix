@@ -1,10 +1,24 @@
+let
+  claude = {
+    smallModel = "Claude Haiku 4.5";
+  };
+in
 [
   {
     src = ./create-readme;
     description = "Create a new README.md file according to best practices and a useful template";
     harnessSpecific = {
       claude = {
-        model = "Claude Haiku 4.5";
+        model = claude.smallModel;
+      };
+    };
+  },
+  {
+    src = ./write-issue;
+    description = "Write an issue/ticket for the current project";
+    harnessSpecific = {
+      claude = {
+        model = claude.smallModel;
       };
     };
   }
