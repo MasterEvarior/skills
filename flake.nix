@@ -19,7 +19,10 @@
         pkgs:
         let
           pkgsSet = builtins.listToAttrs (
-            map (skill: lib.attrsets.nameValuePair skill.name (mkPkg pkgs skill.name skill.src)) skills
+            map (
+              skill:
+              lib.attrsets.nameValuePair (baseNameOf skill.src) (mkPkg pkgs (baseNameOf skill.src) skill.src)
+            ) skills
           );
         in
         pkgsSet
