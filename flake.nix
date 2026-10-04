@@ -15,33 +15,10 @@
       pkgs = inputs.nixpkgs.legacyPackages;
       lib = inputs.nixpkgs.lib;
       skills = (import ./skills/skills.nix);
-      mkPkgs =
-        pkgs:
-        let
-          pkgsSet = builtins.listToAttrs (
-            map (
-              skill:
-              lib.attrsets.nameValuePair (baseNameOf skill.src) (mkPkg pkgs (baseNameOf skill.src) skill.src)
-            ) skills
-          );
-        in
-        pkgsSet
-        // {
-          default = pkgsSet.${(builtins.head skills).name};
-        };
-      mkPkg =
-        pkgs: name: src:
-        pkgs.stdenv.mkDerivation {
-          inherit name src;
-
-          buildPhase = ''
-            cp -r . $out
-          '';
-
-        };
+      helpers = (import ./lib/helpers.nix { inherit lib; });
     in
     {
-      packages = builtins.mapAttrs (system: pkgs: (mkPkgs pkgs)) pkgs;
+      packages = builtins.mapAttrs (system: pkgs: (helpers.mkSkills pkgs skills)) pkgs;
 
       devshells = builtins.mapAttrs (system: pkgs: {
         default = pkgs.mkShell {
