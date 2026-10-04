@@ -18,7 +18,7 @@
       helpers = (import ./lib/helpers.nix { inherit lib; });
     in
     {
-      packages = builtins.mapAttrs (system: pkgs: (helpers.mkSkills pkgs skills)) pkgs;
+      packages = builtins.mapAttrs (system: pkgs: (helpers.mkSkills { inherit pkgs skills; })) pkgs;
 
       devshells = builtins.mapAttrs (system: pkgs: {
         default = pkgs.mkShell {

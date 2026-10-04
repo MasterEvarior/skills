@@ -1,9 +1,18 @@
 { lib, ... }: rec {
   mkSkills =
-    pkgs: skills:
+    {
+      pkgs,
+      skills,
+      model ? null,
+    }:
     let
       pkgsSet = builtins.listToAttrs (
-        map (skill: lib.attrsets.nameValuePair (baseNameOf skill.src) (mkSkill pkgs skill)) skills
+        map (
+          skill:
+          lib.attrsets.nameValuePair (baseNameOf skill.src) (mkSkill {
+            inherit pkgs skill model;
+          })
+        ) skills
       );
     in
     pkgsSet
@@ -11,7 +20,11 @@
       default = pkgsSet.${baseNameOf (builtins.head skills).src};
     };
   mkSkill =
-    pkgs: skill:
+    {
+      pkgs,
+      skill,
+      model ? null,
+    }:
     pkgs.stdenv.mkDerivation {
       name = baseNameOf skill.src;
       src = skill.src;
@@ -19,7 +32,7 @@
       buildPhase = ''
         cp -r . $out
 
-        cat ${mkFrontmatter { inherit pkgs skill; }} > $out/SKILL.md
+        cat ${mkFrontmatter { inherit pkgs skill model; }} > $out/SKILL.md
         cat SKILL.md >> $out/SKILL.md
       '';
     };
@@ -32,7 +45,9 @@
     pkgs.runCommand "toFrontmatter"
       {
         buildInputs = with pkgs; [ yj ];
-        json = builtins.toJSON (extractFrontmatterContent skill);
+        json = builtins.toJSON (extractFrontmatterContent {
+          inherit skill model;
+        });
         passAsFile = [ "json" ];
       }
       ''
@@ -42,8 +57,14 @@
         yj -jy < "$jsonPath" >> $out
         echo "---" >> $out
       '';
-  extractFrontmatterContent = skill: {
-    name = baseNameOf skill.src;
-    description = skill.description;
-  };
+  extractFrontmatterContent =
+    {
+      skill,
+      model ? null,
+    }:
+    {
+      name = baseNameOf skill.src;
+      description = skill.description;
+    }
+    // (if model == null then { } else skill.harnessSpecific.${model});
 }
