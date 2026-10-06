@@ -18,4 +18,4 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v31.11.1
       - name: Check Formatting & Linting
-        run: nix develop -- --fail-on-change
+        run: nix fmt -- --fail-on-change
