@@ -2,7 +2,9 @@
 
 [![built with nix](https://builtwithnix.org/badge.svg)](https://builtwithnix.org)
 
-A collection of [Claude Code](https://claude.com/claude-code) skills, packaged and built as [Nix](https://nixos.org/) flake outputs. Each skill lives in its own directory under `skills/` and consists of a `SKILL.md` describing what the skill does, together with any supporting assets and reference material.
+A collection of LLM skills, packaged and built as [Nix](https://nixos.org/) flake outputs. Each skill lives in its own directory under `skills/` and consists of a `SKILL.md` describing what the skill does, together with any supporting assets and reference material.
+
+Some would say it is not practical to use Nix packages for that, others would say it is unethical to use LLMs. I just want to write some Nix code.
 
 ## Build
 
@@ -22,7 +24,7 @@ The result is a directory containing the skill's `SKILL.md` and its `assets`/`re
 
 ## Run
 
-These packages are not standalone executables. Instead, the built output of a skill (its `SKILL.md`, `assets` and `references`) is meant to be made available to Claude Code, for example by linking the build result into Claude's skills directory.
+These packages are not standalone executables. Instead, the built output of a skill is basically just a directory following [an established convention](https://agentskills.io/home). You can use these by linking it into the correct directory for your LLM agent to use.
 
 ## Development
 
@@ -33,7 +35,7 @@ These packages are not standalone executables. Instead, the built output of a sk
 
 ### Formatting
 
-All formatting is run through the flake's formatter (Markdown is formatted with `mdformat`):
+All formatting is run through the flake's formatter:
 
 ```shell
 nix fmt
