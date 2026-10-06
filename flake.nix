@@ -17,15 +17,14 @@
       skills = (import ./skills/skills.nix);
       helpers = (import ./lib/helpers.nix { inherit lib; });
       models = [ "claude" ];
+      buildAll = pkgs: (helpers.mkSkillsAllModels { inherit pkgs skills models; });
     in
     {
       packages = builtins.mapAttrs (
         system: pkgs:
-        (helpers.mkSkillsAllModels { inherit pkgs skills models; })
+        (buildAll pkgs)
         // {
-          default = pkgs.linkFarmFromDrvs "skills" (
-            lib.attrValues (helpers.mkSkillsAllModels { inherit pkgs skills models; })
-          );
+          default = pkgs.linkFarmFromDrvs "skills" (lib.attrValues (buildAll pkgs));
         }
       ) pkgs;
 
