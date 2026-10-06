@@ -12,7 +12,7 @@ in
         model = claude.smallModel;
       };
     };
-  },
+  }
   {
     src = ./write-issue;
     description = "Write an issue/ticket for the current project";

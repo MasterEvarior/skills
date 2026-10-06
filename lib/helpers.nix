@@ -1,4 +1,13 @@
 { lib, ... }: rec {
+  mkSkillsAllModels =
+    {
+      pkgs,
+      skills,
+      models,
+    }:
+    lib.foldl (a: b: a // b) { } (
+      map (model: mkSkills { inherit pkgs skills model; }) (models ++ [ null ])
+    );
   mkSkills =
     {
       pkgs,
@@ -9,16 +18,33 @@
       pkgsSet = builtins.listToAttrs (
         map (
           skill:
-          lib.attrsets.nameValuePair (baseNameOf skill.src) (mkSkill {
-            inherit pkgs skill model;
-          })
+          lib.attrsets.nameValuePair
+            (mkPkgName {
+              src = skill.src;
+              inherit model;
+            })
+            (mkSkill {
+              inherit pkgs skill model;
+            })
         ) skills
       );
     in
     pkgsSet
     // {
-      default = pkgsSet.${baseNameOf (builtins.head skills).src};
+      default =
+        pkgsSet.${
+          mkPkgName {
+            src = (builtins.head skills).src;
+            inherit model;
+          }
+        };
     };
+  mkPkgName =
+    {
+      src,
+      model ? null,
+    }:
+    if model != null then "${baseNameOf src}-${model}" else (baseNameOf src);
   mkSkill =
     {
       pkgs,
@@ -26,7 +52,10 @@
       model ? null,
     }:
     pkgs.stdenv.mkDerivation {
-      name = baseNameOf skill.src;
+      name = mkPkgName {
+        src = skill.src;
+        inherit model;
+      };
       src = skill.src;
 
       buildPhase = ''

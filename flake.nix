@@ -16,9 +16,12 @@
       lib = inputs.nixpkgs.lib;
       skills = (import ./skills/skills.nix);
       helpers = (import ./lib/helpers.nix { inherit lib; });
+      models = [ "claude" ];
     in
     {
-      packages = builtins.mapAttrs (system: pkgs: (helpers.mkSkills { inherit pkgs skills; })) pkgs;
+      packages = builtins.mapAttrs (
+        system: pkgs: (helpers.mkSkillsAllModels { inherit pkgs skills models; })
+      ) pkgs;
 
       devshells = builtins.mapAttrs (system: pkgs: {
         default = pkgs.mkShell {
