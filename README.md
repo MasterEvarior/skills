@@ -50,3 +50,7 @@ git config --local core.hooksPath .githooks/
 ## Improvements, Issues and More
 
 Pull requests, improvements and issues are always welcome.
+
+## Credits
+
+- The [grill-me skill](./skills/grill-me/SKILL.md) was copied from [mattpocock](https://github.com/mattpocock/skills/blob/main/skills/productivity/grilling/SKILL.md)
