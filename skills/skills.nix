@@ -26,4 +26,12 @@ in
     src = ./grill-me;
     description = "Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases.";
   }
+  {
+    src = ./bisect-helper;
+    description = "Automate a git bisect run to find the commit that introduced a regression";
+  }
+  {
+    src = ./explain-ci-failure;
+    description = "Explain why a CI run failed and point at the responsible commit/line";
+  }
 ]
