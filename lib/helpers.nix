@@ -14,31 +14,19 @@
       skills,
       model ? null,
     }:
-    let
-      pkgsSet = builtins.listToAttrs (
-        map (
-          skill:
-          lib.attrsets.nameValuePair
-            (mkPkgName {
-              src = skill.src;
-              inherit model;
-            })
-            (mkSkill {
-              inherit pkgs skill model;
-            })
-        ) skills
-      );
-    in
-    pkgsSet
-    // {
-      default =
-        pkgsSet.${
-          mkPkgName {
-            src = (builtins.head skills).src;
+    builtins.listToAttrs (
+      map (
+        skill:
+        lib.attrsets.nameValuePair
+          (mkPkgName {
+            src = skill.src;
             inherit model;
-          }
-        };
-    };
+          })
+          (mkSkill {
+            inherit pkgs skill model;
+          })
+      ) skills
+    );
   mkPkgName =
     {
       src,

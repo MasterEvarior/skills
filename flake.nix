@@ -20,7 +20,13 @@
     in
     {
       packages = builtins.mapAttrs (
-        system: pkgs: (helpers.mkSkillsAllModels { inherit pkgs skills models; })
+        system: pkgs:
+        (helpers.mkSkillsAllModels { inherit pkgs skills models; })
+        // {
+          default = pkgs.linkFarmFromDrvs "skills" (
+            lib.attrValues (helpers.mkSkillsAllModels { inherit pkgs skills models; })
+          );
+        }
       ) pkgs;
 
       devshells = builtins.mapAttrs (system: pkgs: {
