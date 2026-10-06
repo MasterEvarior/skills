@@ -83,5 +83,10 @@
       name = baseNameOf skill.src;
       description = skill.description;
     }
-    // (if model == null then { } else skill.harnessSpecific.${model});
+    // (
+      if (model == null || !(skill ? harnessSpecific.${model})) then
+        { }
+      else
+        skill.harnessSpecific.${model}
+    );
 }
