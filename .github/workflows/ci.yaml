@@ -24,6 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    needs:
+      - lint
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
