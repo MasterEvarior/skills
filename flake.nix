@@ -15,16 +15,17 @@
       pkgs = inputs.nixpkgs.legacyPackages;
       lib = inputs.nixpkgs.lib;
       skills = (import ./skills/skills.nix);
-      helpers = (import ./lib/helpers.nix { inherit lib; });
+      helpers = (import ./lib/helpers.nix { inherit lib; }).helpers;
       models = [ "claude" ];
-      buildAll = pkgs: (helpers.mkSkillsAllModels { inherit pkgs skills models; });
+      buildAll = pkgs: (helpers.package.pkgsSkillsFor { inherit pkgs skills models; });
+      combineAll = pkgs: pkgs.linkFarmFromDrvs "skills" (lib.attrValues (buildAll pkgs));
     in
     {
       packages = builtins.mapAttrs (
         system: pkgs:
         (buildAll pkgs)
         // {
-          default = pkgs.linkFarmFromDrvs "skills" (lib.attrValues (buildAll pkgs));
+          default = combineAll pkgs;
         }
       ) pkgs;
 
