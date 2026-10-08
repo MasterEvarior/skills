@@ -1,4 +1,7 @@
 { lib, buildHelper, ... }: rec {
+  /**
+    Package a list of skills for a list of models
+  */
   pkgsSkillsFor =
     {
       pkgs,
@@ -8,6 +11,10 @@
     lib.foldl (a: b: a // b) { } (
       map (model: pkgSkills { inherit pkgs skills model; }) (models ++ [ null ])
     );
+
+  /**
+    Package a list of skills
+  */
   pkgSkills =
     {
       pkgs,
@@ -27,6 +34,10 @@
           })
       ) skills
     );
+
+  /**
+    Package a single skill
+  */
   pkgSkill =
     {
       pkgs,
@@ -47,6 +58,24 @@
         cat SKILL.md >> $out/SKILL.md
       '';
     };
+
+  /**
+    Create the name of a package from their source
+
+    # Examples
+
+    ```nix
+    mkPkgName { src = ./my-skill; }
+    =>
+    my-skill
+    ```
+
+        ```nix
+    mkPkgName { src = ./my-skill; model = "claude"; }
+    =>
+    my-skill-claude
+    ```
+  */
   mkPkgName =
     {
       src,
