@@ -36,7 +36,7 @@ rec {
       model ? null,
     }:
     {
-      name = baseNameOf skill.src;
+      name = if builtins.isAttrs skill.src then skill.src.name else baseNameOf skill.src;
       description = skill.description;
     }
     // (

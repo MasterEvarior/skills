@@ -81,5 +81,10 @@
       src,
       model ? null,
     }:
-    if model != null then "${baseNameOf src}-${model}" else (baseNameOf src);
+    let
+      base = builtins.unsafeDiscardStringContext (
+        if builtins.isAttrs src then src.name else baseNameOf src
+      );
+    in
+    if model != null then "${base}-${model}" else base;
 }

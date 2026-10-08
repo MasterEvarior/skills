@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 let
   build = (import ./build-helper.nix);
   package = (
@@ -7,7 +7,7 @@ let
       buildHelper = build;
     }
   );
-  fetch = (import ./fetch-helper.nix);
+  fetch = (import ./fetch-helper.nix { inherit pkgs; });
 in
 {
   helpers = {

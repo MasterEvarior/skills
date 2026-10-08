@@ -14,10 +14,20 @@
     let
       pkgs = inputs.nixpkgs.legacyPackages;
       lib = inputs.nixpkgs.lib;
-      skills = (import ./skills/skills.nix);
-      helpers = (import ./lib/helpers.nix { inherit lib; }).helpers;
+      helpers = pkgs: (import ./lib/helpers.nix { inherit lib pkgs; }).helpers;
+      skills =
+        pkgs:
+        (import ./skills/skills.nix {
+          inherit pkgs;
+          fetchHelpers = (helpers pkgs).fetch;
+        });
       models = [ "claude" ];
-      buildAll = pkgs: (helpers.package.pkgsSkillsFor { inherit pkgs skills models; });
+      buildAll =
+        pkgs:
+        ((helpers pkgs).package.pkgsSkillsFor {
+          inherit pkgs models;
+          skills = (skills pkgs);
+        });
       combineAll = pkgs: pkgs.linkFarmFromDrvs "skills" (lib.attrValues (buildAll pkgs));
     in
     {
