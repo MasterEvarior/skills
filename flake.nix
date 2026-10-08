@@ -32,14 +32,14 @@
     in
     {
       packages = builtins.mapAttrs (
-        system: pkgs:
+        _system: pkgs:
         (buildAll pkgs)
         // {
           default = combineAll pkgs;
         }
       ) pkgs;
 
-      devshells = builtins.mapAttrs (system: pkgs: {
+      devshells = builtins.mapAttrs (_system: pkgs: {
         default = pkgs.mkShell {
           shellHook = ''
             git config --local core.hooksPath .githooks/
@@ -48,10 +48,12 @@
       }) pkgs;
 
       formatter = builtins.mapAttrs (
-        system: pkgs:
+        _system: pkgs:
         (inputs.treefmt-nix.lib.evalModule pkgs {
           projectRootFile = "flake.nix";
           programs.mdformat.enable = true;
+          programs.deadnix.enable = true;
+          programs.nixfmt.enable = true;
         }).config.build.wrapper
       ) pkgs;
     };
