@@ -33,6 +33,23 @@ These packages are not standalone executables. Instead, the built output of a sk
 1. Create a new directory under `skills/`, e.g. `skills/my-skill`, with at least a `SKILL.md` file.
 1. Add an entry for it to `skills/skills.nix`, pointing `src` at the new directory and providing a short `description`.
 
+### Adding a skill from a Git repository
+
+It is possible to fetch skills from other git repositories:
+
+```nix
+{
+  src = fetchHelpers.fetchFromGitSrc {
+    name = "docling";
+    url = "https://github.com/docling-project/docling";
+    rev = "3181d9fcbb8b7568ceba14b7ed5cd21f66b221e7";
+    rootDir = "docling/.agents/skills/docling";
+    hash = "sha256-1Vb/dG/bYvZ8l+4meDNqjGSYqpP0B4iqHNbLxwtYli4=";
+  };
+  description = "...";
+}
+```
+
 ### Formatting
 
 All formatting is run through the flake's formatter:
