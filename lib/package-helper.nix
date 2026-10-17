@@ -60,11 +60,11 @@
 
       meta =
         let
-          rmLinebreaks = str: builtins.replaceStrings [ "\r\n" "\n" "\r" ] [ " " " " " " ] str;
+          cleanStr = str: lib.trim (builtins.replaceStrings [ "\r\n" "\n" "\r" ] [ " " " " " " ] str);
         in
         rec {
-          description = rmLinebreaks skill.description;
-          longDescription = rmLinebreaks description;
+          description = cleanStr skill.description;
+          longDescription = cleanStr description;
         };
     };
 

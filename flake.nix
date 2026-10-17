@@ -58,6 +58,10 @@
 
       devshells = builtins.mapAttrs (_system: pkgs: {
         default = pkgs.mkShell {
+          packages = with pkgs; [
+            mdsh
+          ];
+
           shellHook = ''
             git config --local core.hooksPath .githooks/
           '';
