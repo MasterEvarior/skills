@@ -1,0 +1,9 @@
+#!/bin/bash
+
+nix fmt -- README.md \
+  || {
+    echo "Failed to regenerate README.md via 'nix fmt'."
+    exit 1
+}
+
+git add README.md

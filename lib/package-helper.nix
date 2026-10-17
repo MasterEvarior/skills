@@ -57,6 +57,15 @@
         cat ${buildHelper.mkFrontmatter { inherit pkgs skill model; }} > $out/SKILL.md
         cat SKILL.md >> $out/SKILL.md
       '';
+
+      meta =
+        let
+          rmLinebreaks = str: builtins.replaceStrings [ "\r\n" "\n" "\r" ] [ " " " " " " ] str;
+        in
+        rec {
+          description = rmLinebreaks skill.description;
+          longDescription = rmLinebreaks description;
+        };
     };
 
   /**

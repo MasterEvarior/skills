@@ -6,6 +6,22 @@ A collection of LLM skills, packaged and built as [Nix](https://nixos.org/) flak
 
 Some would say it is not practical to use Nix packages for that, others would say it is unethical to use LLMs. I just want to write some Nix code.
 
+## Skills
+
+<!-- `> cat $(nix build .#list --no-link --print-out-paths)/list.md` -->
+
+<!-- BEGIN mdsh -->
+| Name | Description |
+| ---- | ----------- |
+| bisect-helper | Automate a git bisect run to find the commit that introduced a regression |
+| create-readme | Create a new README.md file according to best practices and a useful template |
+| docling | Use Docling to understand the content of documents in any supported format — PDF (born-digital or scanned), DOCX, PPTX, XLSX, HTML, Markdown, AsciiDoc, CSV, images, audio, and XML — by converting them into a unified DoclingDocument (Markdown or structured JSON). Use this skill whenever you need to read, parse, convert, extract, or chunk a document you cannot read directly.  |
+| explain-ci-failure | Explain why a CI run failed and point at the responsible commit/line |
+| grill-me | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. |
+| slidev | Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features.  Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.  |
+| write-issue | Write an issue/ticket for the current project |
+<!-- END mdsh -->
+
 ## Build
 
 Each skill is exposed as a package of the flake. To build a specific skill:

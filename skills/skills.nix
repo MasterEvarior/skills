@@ -44,7 +44,7 @@ in
       hash = "sha256-1Vb/dG/bYvZ8l+4meDNqjGSYqpP0B4iqHNbLxwtYli4=";
     };
     description = ''
-      Use Docling to understand the content of documents in any supported format — PDF (born-digital or scanned), DOCX, PPTX, XLSX, HTML, Markdown, AsciiDoc, CSV, images, audio, and XML — by converting them into a unified DoclingDocument (Markdown or structured JSON). 
+      Use Docling to understand the content of documents in any supported format — PDF (born-digital or scanned), DOCX, PPTX, XLSX, HTML, Markdown, AsciiDoc, CSV, images, audio, and XML — by converting them into a unified DoclingDocument (Markdown or structured JSON).
       Use this skill whenever you need to read, parse, convert, extract, or chunk a document you cannot read directly.
     '';
   }
@@ -57,7 +57,8 @@ in
       hash = "sha256-thYZZCxSJpv5DTMzcGVmx8PkmQeGhVAJVUwafaiwF4E=";
     };
     description = ''
-      Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.
+      Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. 
+      Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.
     '';
   }
 ]

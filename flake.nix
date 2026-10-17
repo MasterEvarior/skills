@@ -29,6 +29,13 @@
           skills = (skills pkgs);
         });
       combineAll = pkgs: pkgs.linkFarmFromDrvs "skills" (lib.attrValues (buildAll pkgs));
+      hasModelSuffix = str: builtins.any (suffix: lib.hasSuffix suffix str) models;
+      removeHarnessSpecificPackages = skillPkgs: builtins.filter (p: !hasModelSuffix p.name) skillPkgs;
+      listOfSkills =
+        skillPkgs:
+        map (p: "| ${p.name} | ${p.value.meta.longDescription} |") (
+          removeHarnessSpecificPackages (lib.attrsToList skillPkgs)
+        );
     in
     {
       packages = builtins.mapAttrs (
@@ -36,6 +43,16 @@
         (buildAll pkgs)
         // {
           default = combineAll pkgs;
+          list = pkgs.runCommand "skill-list" { } ''
+            mkdir $out
+
+            FILE="$out/list.md"
+            touch "$FILE"
+
+            echo "| Name | Description |" > "$FILE"
+            echo "| ---- | ----------- |" >> "$FILE"
+            echo "${builtins.concatStringsSep "\n" (listOfSkills (buildAll pkgs))}" >> "$FILE"
+          '';
         }
       ) pkgs;
 
@@ -54,6 +71,7 @@
           programs.mdformat.enable = true;
           programs.deadnix.enable = true;
           programs.nixfmt.enable = true;
+          programs.mdsh.enable = true;
         }).config.build.wrapper
       ) pkgs;
     };
