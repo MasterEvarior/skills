@@ -18,7 +18,7 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v31.11.1
       - name: Check Formatting & Linting
-        run: nix fmt -- --fail-on-change
+        run: nix fmt -- --ci
   build:
     name: "Build"
     runs-on: ubuntu-latest
