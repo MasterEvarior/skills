@@ -48,4 +48,16 @@ in
       Use this skill whenever you need to read, parse, convert, extract, or chunk a document you cannot read directly.
     '';
   }
+  {
+    src = fetchHelpers.fetchFromGitSrc {
+      name = "slidev";
+      url = "https://github.com/slidevjs/slidev";
+      rev = "b610bdfe10f4e33ff5a47a78c39614618a709f31";
+      rootDir = "skills/slidev";
+      hash = "sha256-thYZZCxSJpv5DTMzcGVmx8PkmQeGhVAJVUwafaiwF4E=";
+    };
+    description = ''
+      Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.
+    '';
+  }
 ]
