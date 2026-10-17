@@ -26,5 +26,10 @@
       if [ -f "$file" ] && head -n1 "$file" | grep -q '^---$'; then
         sed '1,/^---$/d' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
       fi
+
+      README="$out/README.md"
+      if [ -e "$README" ]; then
+        rm "$README"
+      fi
     '';
 }
