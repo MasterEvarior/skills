@@ -21,7 +21,10 @@
           inherit pkgs;
           fetchHelpers = (helpers pkgs).fetch;
         });
-      models = [ "claude" ];
+      models = [
+        "claude"
+        "opencode"
+      ];
       buildAll =
         pkgs:
         ((helpers pkgs).package.pkgsSkillsFor {
