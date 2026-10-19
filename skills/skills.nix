@@ -69,6 +69,15 @@ in
     };
   }
   {
+    src = ./review;
+    description = "Review a PR or some code changes in comparison to another branch";
+    harnessSpecific = {
+      opencode = addCompatibility {
+        metadata.audience = "reviewers, developers, maintainers";
+      };
+    };
+  }
+  {
     src = fetchHelpers.fetchFromGitSrc {
       name = "docling";
       url = "https://github.com/docling-project/docling";

@@ -18,7 +18,12 @@ Some would say it is not practical to use Nix packages for that, others would sa
 | docling | Use Docling to understand the content of documents in any supported format — PDF (born-digital or scanned), DOCX, PPTX, XLSX, HTML, Markdown, AsciiDoc, CSV, images, audio, and XML — by converting them into a unified DoclingDocument (Markdown or structured JSON). Use this skill whenever you need to read, parse, convert, extract, or chunk a document you cannot read directly. |
 | explain-ci-failure | Explain why a CI run failed and point at the responsible commit/line |
 | grill-me | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. |
+<<<<<<< HEAD
 | slidev | Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features.  Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks. |
+=======
+| review | Review a PR or some code changes in comparison to another branch |
+| slidev | Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features.  Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.  |
+>>>>>>> 21adb69 (feat: migrate other OpenCode skill)
 | write-issue | Write an issue/ticket for the current project |
 | writing-feedback | Give feedback for something written: a blog-post, a paper, ... |
 <!-- END mdsh -->
