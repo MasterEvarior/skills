@@ -20,6 +20,7 @@ Some would say it is not practical to use Nix packages for that, others would sa
 | grill-me | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. |
 | slidev | Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features.  Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks. |
 | write-issue | Write an issue/ticket for the current project |
+| writing-feedback | Give feedback for something written: a blog-post, a paper, ... |
 <!-- END mdsh -->
 
 ## Build

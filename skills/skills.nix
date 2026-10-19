@@ -36,6 +36,19 @@ in
     description = "Explain why a CI run failed and point at the responsible commit/line";
   }
   {
+    src = ./writing-feedback;
+    description = "Give feedback for something written: a blog-post, a paper, ...";
+    harnessSpecific = {
+      claude = {
+        model = claude.smallModel;
+      };
+      opencode = {
+        compatibility = "opencode";
+        metadata.audience = "reviewers";
+      };
+    };
+  }
+  {
     src = fetchHelpers.fetchFromGitSrc {
       name = "docling";
       url = "https://github.com/docling-project/docling";
