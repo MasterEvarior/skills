@@ -17,8 +17,14 @@ jobs:
         uses: actions/checkout@v7
       - name: Install Nix
         uses: cachix/install-nix-action@v31.11.1
+      - name: Regenerate README skill list
+        run: |
+          nix develop -c mdsh
+          nix fmt -- README.md
       - name: Check Formatting & Linting
         run: nix fmt -- --ci
+      - name: Check README skill list is up to date
+        run: git diff --exit-code README.md
   build:
     name: "Build"
     runs-on: ubuntu-latest

@@ -11,6 +11,7 @@ Some would say it is not practical to use Nix packages for that, others would sa
 <!-- `> cat $(nix build .#list --no-link --print-out-paths)/list.md` -->
 
 <!-- BEGIN mdsh -->
+
 | Name | Description |
 | ---- | ----------- |
 | bisect-helper | Automate a git bisect run to find the commit that introduced a regression |
@@ -18,14 +19,11 @@ Some would say it is not practical to use Nix packages for that, others would sa
 | docling | Use Docling to understand the content of documents in any supported format — PDF (born-digital or scanned), DOCX, PPTX, XLSX, HTML, Markdown, AsciiDoc, CSV, images, audio, and XML — by converting them into a unified DoclingDocument (Markdown or structured JSON). Use this skill whenever you need to read, parse, convert, extract, or chunk a document you cannot read directly. |
 | explain-ci-failure | Explain why a CI run failed and point at the responsible commit/line |
 | grill-me | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. |
-<<<<<<< HEAD
-| slidev | Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features.  Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks. |
-=======
 | review | Review a PR or some code changes in comparison to another branch |
-| slidev | Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features.  Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.  |
->>>>>>> 21adb69 (feat: migrate other OpenCode skill)
+| slidev | Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks. |
 | write-issue | Write an issue/ticket for the current project |
 | writing-feedback | Give feedback for something written: a blog-post, a paper, ... |
+
 <!-- END mdsh -->
 
 ## Build
@@ -54,6 +52,7 @@ These packages are not standalone executables. Instead, the built output of a sk
 
 1. Create a new directory under `skills/`, e.g. `skills/my-skill`, with at least a `SKILL.md` file.
 1. Add an entry for it to `skills/skills.nix`, pointing `src` at the new directory and providing a short `description`.
+1. Regenerate the skills table above by running `mdsh` (available in the dev shell via `nix develop`).
 
 ### Adding a skill from a Git repository
 

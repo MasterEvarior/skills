@@ -102,7 +102,7 @@ in
       hash = "sha256-thYZZCxSJpv5DTMzcGVmx8PkmQeGhVAJVUwafaiwF4E=";
     };
     description = ''
-      Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. 
+      Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features.
       Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks.
     '';
     harnessSpecific = {

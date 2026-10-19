@@ -1,8 +1,14 @@
 #!/bin/bash
 
+nix develop -c mdsh \
+  || {
+    echo "Failed to regenerate README.md via 'mdsh'."
+    exit 1
+}
+
 nix fmt -- README.md \
   || {
-    echo "Failed to regenerate README.md via 'nix fmt'."
+    echo "Failed to format README.md via 'nix fmt'."
     exit 1
 }
 

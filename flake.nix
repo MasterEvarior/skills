@@ -59,7 +59,7 @@
         }
       ) pkgs;
 
-      devshells = builtins.mapAttrs (_system: pkgs: {
+      devShells = builtins.mapAttrs (_system: pkgs: {
         default = pkgs.mkShell {
           packages = with pkgs; [
             mdsh
@@ -78,7 +78,6 @@
           programs.mdformat.enable = true;
           programs.deadnix.enable = true;
           programs.nixfmt.enable = true;
-          programs.mdsh.enable = true;
         }).config.build.wrapper
       ) pkgs;
     };
