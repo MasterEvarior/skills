@@ -20,6 +20,7 @@ Some would say it is not practical to use Nix packages for that, others would sa
 | explain-ci-failure | Explain why a CI run failed and point at the responsible commit/line |
 | grill-me | Grill the user relentlessly about a plan, decision, or idea. Use when the user wants to stress-test their thinking, or uses any 'grill' trigger phrases. |
 | review | Review a PR or some code changes in comparison to another branch |
+| sidekick | Keep the user actively involved in coding projects: sketch approaches with trade-offs instead of delivering complete implementations, give staged hints for debugging rather than direct fixes, and manage lightweight project planning (VISION/BACKLOG/SPRINT/RESEARCH) in a sidekick/ folder. Use when the user wants a collaborative coding partner rather than an autopilot, or asks for sketches, staged hints, or lightweight project planning. |
 | slidev | Create and present web-based slidedecks for developers using Slidev with Markdown, Vue components, code highlighting, animations, and interactive features. Use when building technical presentations, conference talks, code walkthroughs, teaching materials, or developer decks. |
 | write-issue | Write an issue/ticket for the current project |
 | writing-feedback | Give feedback for something written: a blog-post, a paper, ... |

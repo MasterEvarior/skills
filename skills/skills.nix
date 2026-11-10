@@ -95,6 +95,24 @@ in
   }
   {
     src = fetchHelpers.fetchFromGitSrc {
+      name = "sidekick";
+      url = "https://github.com/ZanderHammer/sidekick";
+      rev = "2cc4759c7f9a2ad3e35ab63bf1876cff220c898f";
+      hash = "sha256-W2hyBEmWigebezBn4T8IJRM0L5bSb/Ui0SLWzo3i6/8=";
+    };
+    description = ''
+      Keep the user actively involved in coding projects: sketch approaches with trade-offs instead of delivering complete implementations, give staged hints for debugging rather than direct fixes, and manage lightweight project planning (VISION/BACKLOG/SPRINT/RESEARCH) in a sidekick/ folder.
+      Use when the user wants a collaborative coding partner rather than an autopilot, or asks for sketches, staged hints, or lightweight project planning.
+    '';
+    harnessSpecific = {
+      opencode = addCompatibility';
+      claude = {
+        disable-model-invocation = true;
+      };
+    };
+  }
+  {
+    src = fetchHelpers.fetchFromGitSrc {
       name = "slidev";
       url = "https://github.com/slidevjs/slidev";
       rev = "b610bdfe10f4e33ff5a47a78c39614618a709f31";

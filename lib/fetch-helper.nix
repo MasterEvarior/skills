@@ -5,7 +5,7 @@
       name,
       url,
       rev,
-      rootDir ? "/",
+      rootDir ? "",
       hash,
     }:
     let
@@ -30,6 +30,11 @@
       README="$out/README.md"
       if [ -e "$README" ]; then
         rm "$README"
+      fi
+
+      LICENSE="$out/LICENSE"
+      if [ -e "$LICENSE" ]; then
+        rm "$LICENSE"
       fi
     '';
 }
